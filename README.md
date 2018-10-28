@@ -1,6 +1,6 @@
 ## RasPi IoT hub adventure!
 
-This project is an adventure in learning about the IoT Hub on Azure. 
+This project is an adventure in learning about the IoT Hub on Azure. There will be a companion iOS app for this shortly.  (iPhone and watchOS, hopefully).  
 
 It is based on a basic LED wiring for 3 separate LEDS on pins 17, 22, and 27 -> red, yellow, and green, respectively. 
 
