@@ -2,6 +2,7 @@ const Gpio = require('onoff').Gpio;
 
 const { sleep, msleep, nsleep } = require("sleep");
 const { client } = require("./messageProcessor");
+const config = require('./config.json');
 
 var green, yellow, red;
 
@@ -19,8 +20,6 @@ function ledSetup(){
     msleep(500);
     console.log("setting up red...");
     green = new Gpio(22, 'out');
-
-    
 }
 
 function startLightShow(){
@@ -33,7 +32,7 @@ function startLightShow(){
         function() {
             endBlink(false);
         }, 
-        5000);
+        config.interval);
 }
 
 function blinkLED(LED) { 
@@ -98,16 +97,16 @@ function exitHandler() {
     clearInterval(blinkInterval);
     msleep(500);
     console.log("closing AMQP client...")
-    client.close(
-        function(err, result){
-            if(err){
-                console.log(err);
-            }else{
-                console.log(result);
-                console.log("client disconnected!");
-            }
-        }
-    );
+    // client.close(
+    //     function(err, result){
+    //         if(err){
+    //             console.log(err);
+    //         }else{
+    //             console.log(result);
+    //             console.log("client disconnected!");
+    //         }
+    //     }
+    // );
     msleep(500);
     console.log("deallocating red...")
     clearLED(red);
